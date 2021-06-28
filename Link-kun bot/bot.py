@@ -33,7 +33,9 @@ async def on_message(mess):
   global should_encouraging, authourized_users
   welcome_message = "Hi there!\n I'm your friendly-neighbourhood Link, I'll help you in your quest by encouraging you and reminding you of any event like meeting :D\n Nice to meet you all!\nhttps://tenor.com/view/link-zelda-hyrule-warriors-legend-of-zelda-gif-12193691"
    
-  
+  error_message = "No such command resembles '{}'\n https://tenor.com/view/link-shrugs-idk-idont-know-thinking-gif-13617145 \n try !help for help"
+
+
   enco= random.choice(encouragements_list)
   msg = mess.content
 
@@ -42,6 +44,9 @@ async def on_message(mess):
   elif mess.content.startswith("!link"):
     await mess.channel.send(welcome_message)
   
+  elif "!" in msg[0]:
+    await mess.channel.send(content=error_message.format(msg))
+
   #embed functions
   elif msg.startswith("!help"):
     embed = discord.Embed(title="Help commands", description= "My helpful commands", colour=discord.Color.green())
@@ -83,8 +88,7 @@ async def on_message(mess):
       await mess.channel.send("I'll keep on encouraging people\n https://tenor.com/view/link-wolf-zelda-gif-11809812")     
       should_encouraging = True
     print(should_encouraging) 
-  else:
-    print("{} tried to do {} in channel".format(mess.author, msg, mess.channel))
+  
       
 
 client.run(os.getenv("TOKEN"))
