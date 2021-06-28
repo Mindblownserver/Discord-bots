@@ -15,7 +15,6 @@ encouragements_list = ["You aren't alone, here's cheering \n https://tenor.com/v
 
 authourized_users = ["Yassine kharrat#7657"]
 
-i = int(2)
 should_encouraging = True
 
 @client.event
@@ -44,9 +43,7 @@ async def on_message(mess):
   elif mess.content.startswith("!link"):
     await mess.channel.send(welcome_message)
   
-  elif "!" in msg[0]:
-    await mess.channel.send(content=error_message.format(msg))
-
+  
   #embed functions
   elif msg.startswith("!help"):
     embed = discord.Embed(title="Help commands", description= "My helpful commands", colour=discord.Color.green())
@@ -54,6 +51,12 @@ async def on_message(mess):
     embed.add_field(name="!remind", value="Set a reminder, only one reminder at a time ")
     embed.add_field(name="!switch_enco", value="enable or disable the encouraging messages but right now, only my dad can do it!")
     await mess.channel.send(content=None, embed=embed)    
+
+
+  elif "!" in msg[0]:
+    await mess.channel.send(content=error_message.format(msg))
+
+
 
   elif msg.startswith("!remind"):
       current_time = datetime.datetime.now()
